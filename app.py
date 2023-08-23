@@ -48,7 +48,7 @@ def move_file(dest, entry, name):
 
 
 class MoverHandler(FileSystemEventHandler):
-    def on_modified(self, event):
+    def on_modified(self):
         with scandir(source_file) as entries:
             for entry in entries:
                 name = entry.name

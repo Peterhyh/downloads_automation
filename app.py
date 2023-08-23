@@ -8,12 +8,13 @@ import logging
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-source_dir = '/Users/PeterHuynh/Downloads'
+source_file = '/Users/PeterHuynh/Downloads'
 dest_dir_sfx = '/Users/PeterHuynh/Desktop/Downloads/SFX'
 dest_dir_music = '/Users/PeterHuynh/Desktop/Downloads/Music'
 dest_dir_video = '/Users/PeterHuynh/Desktop/Downloads/Videos'
 dest_dir_image = '/Users/PeterHuynh/Desktop/Downloads/Images'
 dest_dir_documents = '/Users/PeterHuynh/Desktop/Downloads/Documents'
+
 
 image_extensions = [".jpg", ".jpeg", ".jpe", ".jif", ".jfif", ".jfi", ".png", ".gif", ".webp", ".tiff", ".tif", ".psd", ".raw", ".arw", ".cr2", ".nrw",
                     ".k25", ".bmp", ".dib", ".heif", ".heic", ".ind", ".indd", ".indt", ".jp2", ".j2k", ".jpf", ".jpf", ".jpx", ".jpm", ".mj2", ".svg", ".svgz", ".ai", ".eps", ".ico"]
@@ -24,7 +25,7 @@ video_extensions = [".webm", ".mpg", ".mp2", ".mpeg", ".mpe", ".mpv", ".ogg",
 audio_extensions = [".m4a", ".flac", "mp3", ".wav", ".wma", ".aac"]
 # ? supported Document types
 document_extensions = [".doc", ".docx", ".odt",
-                       ".pdf", ".xls", ".xlsx", ".ppt", ".pptx"]
+                       ".pdf", ".xls", ".xlsx", ".ppt", ".pptx", ".zip", ".stl"]
 
 
 def make_unique(dest, name):
@@ -47,10 +48,10 @@ def move_file(dest, entry, name):
 
 
 class MoverHandler(FileSystemEventHandler):
-    # ? THIS FUNCTION WILL RUN WHENEVER THERE IS A CHANGE IN "source_dir"
+    # ? THIS FUNCTION WILL RUN WHENEVER THERE IS A CHANGE IN "source_file"
     # ? .upper is for not missing out on files with uppercase extensions
     def on_modified(self, event):
-        with scandir(source_dir) as entries:
+        with scandir(source_file) as entries:
             for entry in entries:
                 name = entry.name
                 self.check_audio_files(entry, name)
@@ -91,7 +92,7 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
-    path = source_dir
+    path = source_file
     event_handler = MoverHandler()
     observer = Observer()
     observer.schedule(event_handler, path, recursive=True)

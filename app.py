@@ -14,8 +14,6 @@ window = tk.Tk()
 
 window.geometry("500x500")
 window.title("Downloads Clean-Up")
-label = tk.Label(window, text="Downloads Clean-Up", font=('Arial', 18))
-label.pack()
 
 button = tk.Button(window, text="Clean", font=('Arial', 18))
 button.pack()

@@ -2,11 +2,24 @@ from os import scandir, rename
 from os.path import splitext, exists, join
 from shutil import move
 from time import sleep
+import tkinter as tk
 
 import logging
 
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+
+
+window = tk.Tk()
+
+window.geometry("500x500")
+window.title("Downloads Clean-Up")
+label = tk.Label(window, text="Downloads Clean-Up", font=('Arial', 18))
+label.pack()
+
+button = tk.Button(window, text="Clean", font=('Arial', 18))
+button.pack()
+window.mainloop()
 
 source_file = '/Users/PeterHuynh/Downloads'
 dest_dir_sfx = '/Users/PeterHuynh/Desktop/Downloads/SFX'

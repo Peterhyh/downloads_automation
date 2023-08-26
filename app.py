@@ -10,14 +10,14 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 
-window = tk.Tk()
+gui = tk.Tk()
 
-window.geometry("500x500")
-window.title("Downloads Clean-Up")
+gui.geometry("500x500")
+gui.title("Downloads Clean-Up")
 
-button = tk.Button(window, text="Clean", font=('Arial', 18))
+button = tk.Button(gui, text="Clean", font=('Arial', 18))
 button.pack()
-window.mainloop()
+gui.mainloop()
 
 source_file = '/Users/PeterHuynh/Downloads'
 dest_dir_sfx = '/Users/PeterHuynh/Desktop/Downloads/SFX'

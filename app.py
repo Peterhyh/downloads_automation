@@ -15,7 +15,7 @@ gui = tk.Tk()
 gui.geometry("500x500")
 gui.title("Downloads Clean-Up")
 
-button = tk.Button(gui, text="Clean", font=('Arial', 18))
+button = tk.Button(gui, text="Download Clean-Up", font=('Arial', 18))
 button.pack()
 gui.mainloop()
 

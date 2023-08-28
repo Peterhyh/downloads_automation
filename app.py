@@ -2,7 +2,7 @@ from os import scandir, rename
 from os.path import splitext, exists, join
 from shutil import move
 from time import sleep
-import tkinter as tk
+# import tkinter as tk
 
 import logging
 
@@ -10,14 +10,14 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 
-gui = tk.Tk()
+# gui = tk.Tk()
 
-gui.geometry("500x500")
-gui.title("Downloads Clean-Up")
+# gui.geometry("500x500")
+# gui.title("Downloads Clean-Up")
 
-button = tk.Button(gui, text="Download Clean-Up", font=('Arial', 18))
-button.pack()
-gui.mainloop()
+# button = tk.Button(gui, text="Clean Downloads", font=('Arial', 18))
+# button.pack()
+# gui.mainloop()
 
 source_file = '/Users/PeterHuynh/Downloads'
 dest_dir_sfx = '/Users/PeterHuynh/Desktop/Downloads/SFX'
@@ -59,14 +59,14 @@ def move_file(dest, entry, name):
 
 
 class MoverHandler(FileSystemEventHandler):
-    def on_modified(self):
-        with scandir(source_file) as entries:
-            for entry in entries:
-                name = entry.name
-                self.check_audio_files(entry, name)
-                self.check_video_files(entry, name)
-                self.check_image_files(entry, name)
-                self.check_document_files(entry, name)
+    def on_modified(self, entry):
+        entries = scandir(source_file)
+        for entry in entries:
+            name = entry.name
+            self.check_audio_files(entry, name)
+            self.check_video_files(entry, name)
+            self.check_image_files(entry, name)
+            self.check_document_files(entry, name)
 
     def check_audio_files(self, entry, name):
         for audio_extension in audio_extensions:
